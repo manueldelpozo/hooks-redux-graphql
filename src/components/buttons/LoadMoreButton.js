@@ -23,12 +23,12 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function FloatingActionButtons() {
+export default function LoadMoreButton({ onCLick }) {
     const classes = useStyles();
 
     return (
         <div className={classes.root}>
-            <Fab variant="extended" aria-label="delete" color="primary" className={classes.fab}>
+            <Fab onClick={ onCLick } variant="extended" aria-label="delete" color="primary" className={classes.fab}>
                 <NavigationIcon className={classes.extendedIcon} />
                 Load more
             </Fab>

@@ -16,11 +16,11 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-export default function ButtonSizes() {
+export default function AddHeroButton({ onClick }) {
     const classes = useStyles()
 
     return (
-        <Fab color="secondary" aria-label="add" className={classes.root}>
+        <Fab onClick={onClick} color="secondary" aria-label="add" className={classes.root}>
             <AddIcon />
         </Fab>
     )
