@@ -10,7 +10,10 @@ const useStyles = makeStyles(theme => ({
     root: {
         listStyle: 'none',
         paddingLeft: 0,
-        marginTop: theme.spacing(2),
+    },
+    header: {
+        marginLeft: theme.spacing(3),
+        paddingTop: theme.spacing(10),
     },
 }))
 
@@ -19,7 +22,7 @@ export default function HeroList({ heroes }) {
 
     return (
         <React.Fragment>
-            <Grid container spacing={3}>
+            <Grid container spacing={3} className={classes.header}>
                 <Grid item xs={3}>
                     <Typography variant="caption" color="textSecondary">
                         Heroes

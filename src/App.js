@@ -1,6 +1,8 @@
 import React from 'react';
 
 import HeroList from './components/list/HeroList'
+import AddHeroButton from './components/buttons/AddHeroButton'
+import LoadMoreButton from './components/buttons/LoadMoreButton'
 
 import './App.css';
 
@@ -10,6 +12,7 @@ import { Query } from 'react-apollo';
 function App() {
   return (
       <div className="App">
+          <AddHeroButton />
           <Query query={FETCH_N_HEROES}>
               {({ loading, error, data }) => {
                   if (loading) return <p>Loading...</p>;
@@ -18,6 +21,7 @@ function App() {
                   return <HeroList heroes={ data.heroes } />
               }}
           </Query>
+          <LoadMoreButton />
       </div>
   );
 }

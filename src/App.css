@@ -1,9 +1,6 @@
 html {
   background-color: #f5f6fb;
-}
-
-.App {
-  text-align: center;
+  position: relative;
 }
 
 .App-logo {
