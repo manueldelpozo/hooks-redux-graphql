@@ -1,25 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+
+import { FETCH_N_HEROES } from './graphql/heroes'
+import { Query } from 'react-apollo';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Query query={FETCH_N_HEROES}>
+          {({ loading, error, data }) => {
+              if (loading) return <p>Loading...</p>;
+              if (error) return <p>Error :(</p>;
+
+              return data.heroes.map(({
+                  full_name,
+                  avatar_url,
+                  description
+              }) =>
+                  <p>
+                      <span>{ full_name }</span>
+                      <span>{ description }</span>
+                  </p>
+              );
+          }}
+      </Query>
   );
 }
 
