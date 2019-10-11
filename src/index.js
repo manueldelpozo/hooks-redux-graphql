@@ -9,6 +9,12 @@ import { ApolloClient } from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
+import { StoreContext } from 'redux-react-hook';
+import { createStore } from 'redux'
+import { dialogReducer } from './store/reducers'
+
+const store = createStore(dialogReducer)
+
 const customFetch = (uri, options) => {
     return fetch(uri, options)
         .then(response => {
@@ -31,9 +37,11 @@ const client = new ApolloClient({
 });
 
 ReactDOM.render(
-    <ApolloProvider client={client}>
-        <App />
-    </ApolloProvider>,
+    <StoreContext.Provider value={store}>
+        <ApolloProvider client={client}>
+            <App />
+        </ApolloProvider>
+    </StoreContext.Provider>,
     document.getElementById('root')
 );
 

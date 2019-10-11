@@ -1,4 +1,4 @@
-// import React, { useCallback } from 'react'
+// import React from 'react'
 // import {useDispatch, useMappedState} from 'redux-react-hook'
 //
 // import Fab from "@material-ui/core/Fab/Fab"
@@ -6,7 +6,7 @@
 // export function DeleteHeroButton({index}) {
 //     const mapState = useCallback(
 //         state => ({
-//             name: state.heroes[index].full_name,
+//             name: state.todos[index].name,
 //         }),
 //         [index],
 //     );

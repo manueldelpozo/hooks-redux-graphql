@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react'
 
 import HeroList from './components/list/HeroList'
-import AddHeroButton from './components/buttons/AddHeroButton'
+import ShowAddHeroDialogButton from './components/buttons/ShowAddHeroDialogButton'
 import LoadMoreButton from './components/buttons/LoadMoreButton'
-import DialogWrapper from './components/dialogs/DialogWrapper'
-import AddHeroDialogContent from './components/dialogs/AddHeroDialogContent'
-import DeleteHeroDialogContent from './components/dialogs/DeleteHeroDialogContent'
+import DialogAction from './components/dialogs/DialogAction'
 
 import './App.css'
 
@@ -13,32 +11,9 @@ import { FETCH_N_HEROES } from './graphql/heroes'
 import { Query } from 'react-apollo'
 
 export default function App() {
-    const [dialog, setDialog] = useState({
-        open: false,
-        type: ''
-    })
-
-    const renderDialogContent = (type) => {
-        switch(type) {
-            case 'addHero':
-                return <AddHeroDialogContent />
-            case 'deleteHero':
-                return <DeleteHeroDialogContent />
-            default:
-                return null
-        }
-    }
-
-    const openAddHeroDialog = () => {
-        setDialog({
-            open: true,
-            type: 'addHero'
-        })
-    }
-
     return (
         <div className="App">
-            <AddHeroButton onClick={ openAddHeroDialog } />
+            <ShowAddHeroDialogButton />
             <Query query={FETCH_N_HEROES}>
                 {({ loading, error, data }) => {
                     if (loading) return <p>Loading...</p>;
@@ -48,9 +23,7 @@ export default function App() {
                 }}
             </Query>
             <LoadMoreButton />
-            <DialogWrapper open={ dialog.open }>
-                { renderDialogContent(dialog.type) }
-            </DialogWrapper>
+            <DialogAction />
         </div>
     )
 }
