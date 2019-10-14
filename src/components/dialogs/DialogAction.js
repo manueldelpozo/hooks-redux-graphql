@@ -41,7 +41,7 @@ const DialogTitle = withStyles(styles)(props => {
     )
 })
 
-export default function DialogAction({ onDeleteHero }) {
+export default function DialogAction({ onDeleteHero, onAddHero }) {
     const dispatch = useDispatch()
     const handleClose = useCallback(() => dispatch(hideDialogAction()), [dispatch],)
 
@@ -49,7 +49,7 @@ export default function DialogAction({ onDeleteHero }) {
         state => ({
             dialogOpen: state.dialog.open,
             dialogType: state.dialog.type,
-        })
+        }), []
     );
     const { dialogOpen, dialogType } = useMappedState(mapState);
 
@@ -67,7 +67,7 @@ export default function DialogAction({ onDeleteHero }) {
     const renderDialogContent = (type) => {
         switch(type) {
             case 'addHero':
-                return <AddHeroDialogContent />
+                return <AddHeroDialogContent onAddHero={onAddHero} />
             case 'deleteHero':
                 return <DeleteHeroDialogContent onDeleteHero={onDeleteHero} />
             default:

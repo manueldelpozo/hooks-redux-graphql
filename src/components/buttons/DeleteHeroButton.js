@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react'
+import React, { useCallback } from 'react'
 import { useDispatch } from 'redux-react-hook'
 import { deleteHeroAction } from './../../store/actions/heroActions'
 

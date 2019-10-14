@@ -32,7 +32,7 @@ export default function LoadMoreButton({ onLoadMore }) {
     const mapState = useCallback(
         state => ({
             newLoadedHeroes: state.newLoadedHeroes,
-        })
+        }), []
     );
 
     const { newLoadedHeroes } = useMappedState(mapState);

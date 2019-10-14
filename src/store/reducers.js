@@ -44,7 +44,7 @@ export const reducers = (state = initialState, action) => {
             return {
                 ...state,
                 heroes: [
-                    ...action.newHero,
+                    action.payload,
                     ...state.heroes,
                 ],
                 dialog: closeDialog(),

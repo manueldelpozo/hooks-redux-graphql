@@ -24,10 +24,13 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-export default function AddHeroButton({ disabled, newHero }) {
+export default function AddHeroButton({ disabled, newHero, onAddHero }) {
     const classes = useStyles()
-    const dispatch = useDispatch();
-    const addHero = useCallback(() => dispatch(addHeroAction(newHero)), [dispatch],)
+    const dispatch = useDispatch()
+    const addHero = useCallback(() => {
+        onAddHero()
+        return dispatch(addHeroAction(newHero || []))
+    }, [newHero, dispatch, onAddHero])
 
     return (
         <Fab
@@ -39,7 +42,7 @@ export default function AddHeroButton({ disabled, newHero }) {
             disabled={disabled}
         >
             <AddIcon className={classes.extendedIcon} />
-            Add
+            Add {newHero.full_name}
         </Fab>
     )
 }

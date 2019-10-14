@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-export default function AddHeroDialogContent() {
+export default function AddHeroDialogContent({ onAddHero }) {
     const classes = useStyles()
     const [values, setValues] = useState({
         avatar_url: '',
@@ -163,7 +163,7 @@ export default function AddHeroDialogContent() {
                 </form>
             </DialogContent>
             <DialogActions>
-                <AddHeroButton disabled={!buttonEnabled} newHero={values} />
+                <AddHeroButton disabled={!buttonEnabled} newHero={values} onAddHero={onAddHero} />
             </DialogActions>
         </Fragment>
     )

@@ -16,7 +16,7 @@ export default function App() {
     const onLoadMore = () => {
         setLoadMoreHeroes(loadMoreHeroes + INCREMENT_MORE_HEROES)
     }
-    const onDeleteHero = () => {
+    const onChangeList = () => {
         setRerender(rerender + 1)
     }
 
@@ -28,7 +28,7 @@ export default function App() {
                 onDeleteHero={rerender}
             />
             <LoadMoreButton onLoadMore={onLoadMore}/>
-            <DialogAction onDeleteHero={onDeleteHero} />
+            <DialogAction onDeleteHero={onChangeList} onAddHero={onChangeList} />
         </div>
     )
 }

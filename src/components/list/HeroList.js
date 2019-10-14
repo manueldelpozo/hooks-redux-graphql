@@ -25,7 +25,7 @@ export default function HeroList() {
     const mapState = useCallback(
         state => ({
             heroes: state.heroes,
-        })
+        }), []
     )
     const { heroes } = useMappedState(mapState)
 

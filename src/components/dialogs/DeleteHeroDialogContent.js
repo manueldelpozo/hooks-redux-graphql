@@ -40,7 +40,7 @@ export default function DeleteHeroDialogContent({ onDeleteHero }) {
         state => ({
             heroes: state.heroes,
             heroToDeleteId: state.heroToDeleteId,
-        })
+        }), []
     )
     const { heroes, heroToDeleteId } = useMappedState(mapState);
     const heroToDelete = heroes && heroes.filter(hero => hero.id === heroToDeleteId)

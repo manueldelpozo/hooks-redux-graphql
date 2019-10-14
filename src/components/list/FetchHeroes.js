@@ -9,7 +9,7 @@ import HeroList from './HeroList'
 
 import { INITIAL_LOADED_HEROES } from '../../constants/constants'
 
-import { useDispatch, useMappedState } from 'redux-react-hook'
+import { useDispatch } from 'redux-react-hook'
 import { putHeroes } from './../../store/actions/heroActions'
 
 import { useQuery } from '@apollo/react-hooks'
@@ -50,7 +50,7 @@ export default function FetchHeroes({ loadMoreHeroes, rerender }) {
     const getPayLoad = ({ loading, error, data }) => ({
         isLoading: loading,
         errorMessage: error && error.message,
-        newLoadedHeroes: data && data.heroes || [],
+        newLoadedHeroes: (data && data.heroes)|| [],
     })
 
     useEffect(() => {
@@ -62,26 +62,6 @@ export default function FetchHeroes({ loadMoreHeroes, rerender }) {
             dispatch(putHeroes(payload))
         }
     }, [req, dispatch, loadMoreHeroes])
-
-    // useEffect(() => {
-    //     if (loadMoreHeroes > 0) {
-    //         const payload = getPayLoad(req)
-    //
-    //         setIsLoading(payload.isLoading)
-    //         setErrorMessage(payload.errorMessage)
-    //         //setHeroes([...heroes, ...payload.heroes])
-    //         console.log('loadmore', payload)
-    //
-    //         // dispatch({
-    //         //     type: 'LOAD_MORE_HEROES',
-    //         //     payload: payload
-    //         // })
-    //
-    //         setDisplayedHeroes(displayedHeroes + loadMoreHeroes)
-    //     }
-    // }, [loadMoreHeroes])
-
-    //console.log('heroes?',heroes)
 
     if (isLoading) return <CircularProgress className={classes.superCentered} />
     if (errorMessage) return <ErrorPage />

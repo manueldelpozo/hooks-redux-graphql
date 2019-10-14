@@ -13,15 +13,15 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-export default function ShowDeleteHeroDialogButton(props) {
+export default function ShowDeleteHeroDialogButton({ index, children }) {
     const classes = useStyles()
 
     const dispatch = useDispatch()
-    const showDialog = useCallback(() => dispatch(showDeleteHeroDialogAction(props.index)), [dispatch],)
+    const showDialog = useCallback(() => dispatch(showDeleteHeroDialogAction(index)), [dispatch, index],)
 
     return (
         <CardActionArea onClick={showDialog} className={classes.cardAction}>
-            { props.children }
+            { children }
         </CardActionArea>
     )
 }
