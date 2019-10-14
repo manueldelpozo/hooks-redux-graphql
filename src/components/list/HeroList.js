@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import { useMappedState } from 'redux-react-hook'
 
 import { makeStyles } from '@material-ui/core/styles'
@@ -29,6 +29,21 @@ export default function HeroList() {
     )
     const { heroes } = useMappedState(mapState)
 
+    const renderListWithMemo = useMemo(
+        () =>
+            heroes.map(hero =>
+                <HeroItem
+                    key={ hero.id }
+                    id={ hero.id }
+                    avatar_url={ hero.avatar_url }
+                    name={ hero.full_name }
+                    type={ hero.type.name }
+                    description={ hero.description }
+                />
+            ),
+        [heroes]
+    )
+
     return (
         <React.Fragment>
             <Grid container spacing={3} className={classes.header}>
@@ -49,18 +64,7 @@ export default function HeroList() {
                 </Grid>
             </Grid>
             <ul className={classes.list}>
-                {
-                    heroes.map(hero =>
-                        <HeroItem
-                            key={ hero.id }
-                            id={ hero.id }
-                            avatar_url={ hero.avatar_url }
-                            name={ hero.full_name }
-                            type={ hero.type.name }
-                            description={ hero.description }
-                        />
-                    )
-                }
+                {renderListWithMemo}
             </ul>
         </React.Fragment>
     )
