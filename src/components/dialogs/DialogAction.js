@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import {useDispatch, useMappedState} from 'redux-react-hook'
+import { useDispatch, useMappedState } from 'redux-react-hook'
 
 import { withStyles } from '@material-ui/core/styles'
 import Dialog from '@material-ui/core/Dialog'
@@ -48,8 +48,7 @@ export default function DialogAction() {
             dialogType: state.dialog.type,
         })
     );
-
-    const {dialogOpen, dialogType} = useMappedState(mapState);
+    const { dialogOpen, dialogType } = useMappedState(mapState);
 
     const setTitle = (type) => {
         switch(type) {
