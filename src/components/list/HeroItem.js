@@ -29,14 +29,14 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-export default function HeroItem({ avatar_url, name, type, description }) {
+export default function HeroItem({ id, avatar_url, name, type, description }) {
     const classes = useStyles()
 
     return (
         <li className={classes.root}>
             <Card>
-                <ShowDeleteHeroDialogButton>
-                    <Avatar alt={ name } src={ avatar_url } className={classes.avatar} />
+                <ShowDeleteHeroDialogButton index={id}>
+                    <Avatar alt={name} src={avatar_url} className={classes.avatar} />
                     <Typography variant="body1" color="textPrimary" className={classes.textCol1}>
                         { name }
                     </Typography>

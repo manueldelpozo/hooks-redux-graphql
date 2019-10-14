@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react'
 import { useDispatch } from 'redux-react-hook'
+import { showAddHeroDialogAction } from './../../store/actions/dialogActions'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Fab from '@material-ui/core/Fab'
@@ -20,7 +21,7 @@ const useStyles = makeStyles(theme => ({
 export default function ShowAddHeroDialogButton() {
     const classes = useStyles()
     const dispatch = useDispatch()
-    const showDialog = useCallback(() => dispatch({type: 'SHOW_ADD_HERO_DIALOG'}))
+    const showDialog = useCallback(() => dispatch(showAddHeroDialogAction()), [dispatch],)
 
     return (
         <Fab onClick={showDialog} color="secondary" aria-label="add" className={classes.root}>

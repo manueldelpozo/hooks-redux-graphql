@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useCallback } from 'react'
+import { useMappedState } from 'redux-react-hook'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Fab from '@material-ui/core/Fab'
-import NavigationIcon from '@material-ui/icons/Navigation';
+import NavigationIcon from '@material-ui/icons/Navigation'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -21,14 +22,31 @@ const useStyles = makeStyles(theme => ({
         marginRight: theme.spacing(1),
         transform: 'rotate(180deg)',
     },
-}));
+}))
 
-export default function LoadMoreButton({ onCLick }) {
-    const classes = useStyles();
+export default function LoadMoreButton({ onLoadMore }) {
+    const classes = useStyles()
+
+    // const mapState = useCallback(
+    //     state => ({
+    //         heroes: state.heroes,
+    //         newLoadedHeroes: state.newLoadedHeroes,
+    //         displayedHeroes: state.displayedHeroes
+    //     })
+    // );
+    //
+    // const { heroes, newLoadedHeroes, displayedHeroes } = useMappedState(mapState);
 
     return (
         <div className={classes.root}>
-            <Fab onClick={ onCLick } variant="extended" aria-label="delete" color="primary" className={classes.fab}>
+            <Fab
+                onClick={onLoadMore}
+                variant="extended"
+                aria-label="delete"
+                color="primary"
+                className={classes.fab}
+                //disabled={heroes.length + newLoadedHeroes.length !== displayedHeroes}
+            >
                 <NavigationIcon className={classes.extendedIcon} />
                 Load more
             </Fab>

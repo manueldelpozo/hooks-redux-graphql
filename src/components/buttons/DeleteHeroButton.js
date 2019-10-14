@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react'
 import { useDispatch } from 'redux-react-hook'
+import { deleteHeroAction } from './../../store/actions/heroActions'
 
 import { makeStyles } from '@material-ui/core'
 import Fab from '@material-ui/core/Fab/Fab'
@@ -26,15 +27,16 @@ const useStyles = makeStyles(theme => ({
 export default function DeleteHeroButton() {
     const classes = useStyles()
     const dispatch = useDispatch()
-    const deleteHero = useCallback(() =>
-        dispatch({
-            type: 'DELETE_HERO',
-        }),
-        [dispatch],
-    )
+    const deleteHero = useCallback(() => dispatch(deleteHeroAction()), [dispatch],)
 
     return (
-        <Fab onClick={ deleteHero } variant="extended" aria-label="delete" color="primary" className={classes.fab}>
+        <Fab
+            onClick={ deleteHero }
+            variant="extended"
+            aria-label="delete"
+            color="primary"
+            className={classes.fab}
+        >
             <DeleteIcon className={classes.extendedIcon} />
             Delete Hero
         </Fab>

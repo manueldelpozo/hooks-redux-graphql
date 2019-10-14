@@ -44,6 +44,7 @@ export default function HeroList({ heroes }) {
                     heroes.map(hero =>
                         <HeroItem
                             key={ hero.id }
+                            id={ hero.id }
                             avatar_url={ hero.avatar_url }
                             name={ hero.full_name }
                             type={ hero.type.name }

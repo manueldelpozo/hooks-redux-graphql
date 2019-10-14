@@ -8,13 +8,16 @@ import IconButton from '@material-ui/core/IconButton'
 import CloseIcon from '@material-ui/icons/Close'
 import Typography from '@material-ui/core/Typography'
 
-import AddHeroDialogContent from "./AddHeroDialogContent";
-import DeleteHeroDialogContent from "./DeleteHeroDialogContent";
+import AddHeroDialogContent from "./AddHeroDialogContent"
+import DeleteHeroDialogContent from "./DeleteHeroDialogContent"
+
+import { hideDialogAction } from './../../store/actions/dialogActions'
 
 const styles = theme => ({
     root: {
         margin: 0,
         padding: theme.spacing(2),
+        backgroundColor: '#f5f6fb',
     },
     closeButton: {
         position: 'absolute',
@@ -40,7 +43,7 @@ const DialogTitle = withStyles(styles)(props => {
 
 export default function DialogAction() {
     const dispatch = useDispatch()
-    const handleClose = useCallback(() => dispatch({type: 'HIDE_DIALOG'}))
+    const handleClose = useCallback(() => dispatch(hideDialogAction()), [dispatch],)
 
     const mapState = useCallback(
         state => ({
