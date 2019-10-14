@@ -7,6 +7,8 @@ import {
     DELETE_HERO,
 } from './actions/actionTypes'
 
+import { ADD_HERO_TYPE, DELETE_HERO_TYPE } from './../constants/constants'
+
 const initialState = {
     isLoading: false,
     errorMessage: '',
@@ -58,13 +60,13 @@ export const reducers = (state = initialState, action) => {
         case SHOW_ADD_HERO_DIALOG:
             return {
                 ...state,
-                dialog: openDialog('addHero'),
+                dialog: openDialog(ADD_HERO_TYPE),
             }
         case SHOW_DELETE_HERO_DIALOG:
             return {
                 ...state,
                 heroToDeleteId: action.index,
-                dialog: openDialog('deleteHero'),
+                dialog: openDialog(DELETE_HERO_TYPE),
             }
         case HIDE_DIALOG:
             return {
