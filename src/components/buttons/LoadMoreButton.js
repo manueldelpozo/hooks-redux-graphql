@@ -27,15 +27,13 @@ const useStyles = makeStyles(theme => ({
 export default function LoadMoreButton({ onLoadMore }) {
     const classes = useStyles()
 
-    // const mapState = useCallback(
-    //     state => ({
-    //         heroes: state.heroes,
-    //         newLoadedHeroes: state.newLoadedHeroes,
-    //         displayedHeroes: state.displayedHeroes
-    //     })
-    // );
-    //
-    // const { heroes, newLoadedHeroes, displayedHeroes } = useMappedState(mapState);
+    const mapState = useCallback(
+        state => ({
+            newLoadedHeroes: state.newLoadedHeroes,
+        })
+    );
+
+    const { newLoadedHeroes } = useMappedState(mapState);
 
     return (
         <div className={classes.root}>
@@ -45,7 +43,7 @@ export default function LoadMoreButton({ onLoadMore }) {
                 aria-label="delete"
                 color="primary"
                 className={classes.fab}
-                //disabled={heroes.length + newLoadedHeroes.length !== displayedHeroes}
+                disabled={!newLoadedHeroes.length}
             >
                 <NavigationIcon className={classes.extendedIcon} />
                 Load more

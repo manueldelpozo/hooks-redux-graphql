@@ -1,24 +1,33 @@
-import React from 'react'
+import React, { useCallback } from 'react'
+import { useMappedState } from 'redux-react-hook'
 
 import { makeStyles } from '@material-ui/core/styles'
-import Grid from '@material-ui/core/Grid';
+import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 
 import HeroItem from './HeroItem'
 
 const useStyles = makeStyles(theme => ({
-    root: {
-        listStyle: 'none',
-        paddingLeft: 0,
-    },
     header: {
         marginLeft: theme.spacing(3),
         paddingTop: theme.spacing(10),
     },
+    list: {
+        listStyle: 'none',
+        paddingLeft: 0,
+        marginBottom: theme.spacing(10),
+    },
 }))
 
-export default function HeroList({ heroes }) {
+export default function HeroList() {
     const classes = useStyles()
+
+    const mapState = useCallback(
+        state => ({
+            heroes: state.heroes,
+        })
+    )
+    const { heroes } = useMappedState(mapState)
 
     return (
         <React.Fragment>
@@ -39,7 +48,7 @@ export default function HeroList({ heroes }) {
                     </Typography>
                 </Grid>
             </Grid>
-            <ul className={classes.root}>
+            <ul className={classes.list}>
                 {
                     heroes.map(hero =>
                         <HeroItem

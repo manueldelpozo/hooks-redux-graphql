@@ -1,0 +1,2 @@
+export const INITIAL_LOADED_HEROES = 5
+export const INCREAMENT_MORE_HEROES = 5

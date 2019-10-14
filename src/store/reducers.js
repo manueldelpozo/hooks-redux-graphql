@@ -36,20 +36,19 @@ export const reducers = (state = initialState, action) => {
             return {
                 ...state,
                 ...action.payload,
-            }
-        case 'LOAD_MORE_HEROES':
-            return {
-                ...state,
-                ...action.payload,
+                heroes: [
+                    ...state.heroes,
+                    ...action.payload.newLoadedHeroes,
+                ]
             }
         case ADD_HERO:
             return {
                 ...state,
                 dialog: closeDialog(),
-                heroes: {
-                    ...state.heroes,
+                heroes: [
                     ...action.newHero,
-                }
+                    ...state.heroes,
+                ]
             }
         case DELETE_HERO:
             return {
