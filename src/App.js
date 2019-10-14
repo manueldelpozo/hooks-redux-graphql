@@ -8,40 +8,26 @@ import DialogAction from './components/dialogs/DialogAction'
 import './App.css'
 
 export default function App() {
-    // const [loadMoreHeroes, setLoadMoreHeroes] = useState(0)
-    // const onLoadMore = useCallback(() => {
-    //     setLoadMoreHeroes(loadMoreHeroes + 5)
-    // })
-    //
-    // const onDeleteHero = useCallback(() => {
-    //     console.log('delete hero')
-    // })
-    //
-    // useEffect(() => {
-    //     const handler = (event) => {
-    //         if (event.propertyName === "width") {
-    //             //passe a function to state setter to get fresh state value
-    //             changeTransitionStatus(transitionStatus => transitionStatus ? false : true);
-    //         }
-    //     };
-    //
-    //     window.addEventListener('deleteHero', handlerDeleteHero)
-    //
-    //     // clean up
-    //     return () => window.removeEventListener("deleteHero", handlerDeleteHero);
-    // }, [])
+    const [rerender, setRerender] = useState(0)
+    const [loadMoreHeroes, setLoadMoreHeroes] = useState(0)
+
+    const onLoadMore = () => {
+        setLoadMoreHeroes(loadMoreHeroes + 5)
+    }
+    const onDeleteHero = () => {
+        console.log('delete hero')
+        setRerender(rerender + 1)
+    }
 
     return (
         <div className="App">
             <ShowAddHeroDialogButton />
             <FetchHeroes
-                //loadMoreHeroes={loadMoreHeroes}
-                //onDeleteHero={onDeleteHero}
+                loadMoreHeroes={loadMoreHeroes}
+                onDeleteHero={onDeleteHero}
             />
-            <LoadMoreButton
-                //onLoadMore={onLoadMore}
-            />
-            <DialogAction />
+            <LoadMoreButton onLoadMore={onLoadMore}/>
+            <DialogAction onDeleteHero={onDeleteHero} />
         </div>
     )
 }

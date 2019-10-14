@@ -33,7 +33,7 @@ const DialogActions = withStyles(theme => ({
     },
 }))(MuiDialogActions)
 
-export default function DeleteHeroDialogContent() {
+export default function DeleteHeroDialogContent({ onDeleteHero }) {
     const classes = useStyles()
 
     const mapState = useCallback(
@@ -61,7 +61,7 @@ export default function DeleteHeroDialogContent() {
                 </Typography>
             </DialogContent>
             <DialogActions>
-                <DeleteHeroButton />
+                <DeleteHeroButton onDeleteHero={onDeleteHero} />
             </DialogActions>
         </Fragment>
     )

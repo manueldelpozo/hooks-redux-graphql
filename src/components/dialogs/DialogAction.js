@@ -41,7 +41,7 @@ const DialogTitle = withStyles(styles)(props => {
     )
 })
 
-export default function DialogAction() {
+export default function DialogAction({ onDeleteHero }) {
     const dispatch = useDispatch()
     const handleClose = useCallback(() => dispatch(hideDialogAction()), [dispatch],)
 
@@ -69,7 +69,7 @@ export default function DialogAction() {
             case 'addHero':
                 return <AddHeroDialogContent />
             case 'deleteHero':
-                return <DeleteHeroDialogContent />
+                return <DeleteHeroDialogContent onDeleteHero={onDeleteHero} />
             default:
                 return null
         }

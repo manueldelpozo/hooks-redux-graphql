@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useRef } from 'react'
 import { useDispatch } from 'redux-react-hook'
 import { deleteHeroAction } from './../../store/actions/heroActions'
 
@@ -24,10 +24,13 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-export default function DeleteHeroButton() {
+export default function DeleteHeroButton({ onDeleteHero }) {
     const classes = useStyles()
     const dispatch = useDispatch()
-    const deleteHero = useCallback(() => dispatch(deleteHeroAction()), [dispatch],)
+    const deleteHero = useCallback(() => {
+        onDeleteHero()
+        return dispatch(deleteHeroAction())
+    }, [dispatch, onDeleteHero])
 
     return (
         <Fab
