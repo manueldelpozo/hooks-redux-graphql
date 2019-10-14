@@ -1,11 +1,10 @@
-import React, {Fragment, useState, useCallback} from 'react'
+import React, { Fragment, useState } from 'react'
 
 import AddHeroButton from './../buttons/AddHeroButton'
 
 import { makeStyles, withStyles } from '@material-ui/core/styles'
 import MuiDialogContent from '@material-ui/core/DialogContent'
 import MuiDialogActions from '@material-ui/core/DialogActions'
-import MenuItem from '@material-ui/core/MenuItem'
 import TextField from '@material-ui/core/TextField'
 
 import { useQuery } from '@apollo/react-hooks';
@@ -42,54 +41,65 @@ export default function AddHeroDialogContent() {
     const [values, setValues] = useState({
         avatar_url: '',
         full_name: '',
-        type_name: '',
+        type: {
+            name: ''
+        },
         description: '',
     })
-    const [buttonEabled, setButtonEnabled] = React.useState(false)
+    const [buttonEnabled, setButtonEnabled] = React.useState(false)
 
     const handleChange = event => {
+        const target = event.target
+        let value;
+
+        if (target.name === 'type') {
+            value = {
+                name: target.value
+            }
+        }
+
         setValues({
             ...values,
-            [event.target.name]: event.target.value,
+            [target.name]: value || target.value,
         })
         setButtonEnabled(
             values.avatar_url.length > 0 &&
             values.full_name.length > 0 &&
-            values.type_name.length > 0 &&
+            values.type.name.length > 0 &&
             values.description.length > 0
         )
     }
 
-    const FetchAvatars = () => {
-        const { loading, error, data } = useQuery(FETCH_HERO_AVATARS_URL)
-        if (loading) return <MenuItem>Loading...</MenuItem>
-        if (error) return <MenuItem>{ error.message }</MenuItem>
+    const reqAvatars = useQuery(FETCH_HERO_AVATARS_URL)
+    const FetchAvatars = React.forwardRef(() => {
+        const { loading, error, data } = reqAvatars
+        if (loading) return <option>Loading...</option>
+        if (error) return <option>{ error.message }</option>
 
         return data.avatars.map(avatar =>
-            <MenuItem key={avatar.id} value={avatar.avatar_url} name="avatar_url">
+            <option key={avatar.id} value={avatar.avatar_url} name="avatar_url">
                 {avatar.alt}
-            </MenuItem>
+            </option>
         )
-    }
+    })
 
-    const FetchTypes = () => {
-        const { loading, error, data } = useQuery(FETCH_HERO_TYPES_NAME)
-        if (loading) return <MenuItem>Loading...</MenuItem>
-        if (error) return <MenuItem>{ error.message }</MenuItem>
+    const reqTypes = useQuery(FETCH_HERO_TYPES_NAME)
+    const FetchTypes = React.forwardRef(() => {
+        const { loading, error, data } = reqTypes
+        if (loading) return <option>Loading...</option>
+        if (error) return <option>{ error.message }</option>
 
         return data.types.map(type =>
-            <MenuItem key={type.id} value={type.name} name="type_name">
+            <option key={type.id} value={type.name} name="type">
                 {type.name}
-            </MenuItem>
+            </option>
         )
-    }
+    })
 
     return (
         <Fragment>
             <DialogContent dividers>
-                <form noValidate autoComplete="off"
-                      //onSubmit={this.add}
-                >
+                <form noValidate autoComplete="off">
                     <TextField
                         variant="outlined"
                         label="Avatar URL"
@@ -100,10 +110,12 @@ export default function AddHeroDialogContent() {
                         margin="dense"
                         fullWidth
                         select
-                        SelectProps={() => ({
+                        SelectProps={{
+                            native: true,
                             onChange: handleChange
-                        })}
+                        }}
                     >
+                        <option />
                         <FetchAvatars />
                     </TextField>
                     <TextField
@@ -120,17 +132,19 @@ export default function AddHeroDialogContent() {
                     <TextField
                         variant="outlined"
                         label="Type"
-                        name="type_name"
-                        id="type_name"
-                        value={values.type_name}
+                        name="type"
+                        id="type"
+                        value={values.type.name}
                         className={classes.textField}
                         margin="dense"
                         fullWidth
                         select
-                        SelectProps={() => ({
+                        SelectProps={{
+                            native: true,
                             onChange: handleChange
-                        })}
+                        }}
                     >
+                        <option />
                         <FetchTypes />
                     </TextField>
                     <TextField
@@ -149,7 +163,7 @@ export default function AddHeroDialogContent() {
                 </form>
             </DialogContent>
             <DialogActions>
-                <AddHeroButton disabled={!buttonEabled} newHero={values} />
+                <AddHeroButton disabled={!buttonEnabled} newHero={values} />
             </DialogActions>
         </Fragment>
     )

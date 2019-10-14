@@ -5,6 +5,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import Fab from '@material-ui/core/Fab'
 import NavigationIcon from '@material-ui/icons/Navigation'
 
+import { INCREMENT_MORE_HEROES } from './../../constants/constants';
+
 const useStyles = makeStyles(theme => ({
     root: {
         position: 'fixed',
@@ -43,7 +45,7 @@ export default function LoadMoreButton({ onLoadMore }) {
                 aria-label="delete"
                 color="primary"
                 className={classes.fab}
-                disabled={!newLoadedHeroes.length}
+                disabled={newLoadedHeroes.length < INCREMENT_MORE_HEROES}
             >
                 <NavigationIcon className={classes.extendedIcon} />
                 Load more

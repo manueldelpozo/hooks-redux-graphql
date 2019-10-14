@@ -10,7 +10,6 @@ import {
 const initialState = {
     isLoading: false,
     errorMessage: '',
-    displayedHeroes: 0,
     heroes: [],
     newLoadedHeroes: [],
     heroToDeleteId: 0,
@@ -44,11 +43,11 @@ export const reducers = (state = initialState, action) => {
         case ADD_HERO:
             return {
                 ...state,
-                dialog: closeDialog(),
                 heroes: [
                     ...action.newHero,
                     ...state.heroes,
-                ]
+                ],
+                dialog: closeDialog(),
             }
         case DELETE_HERO:
             return {

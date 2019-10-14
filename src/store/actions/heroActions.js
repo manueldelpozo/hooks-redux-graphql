@@ -6,13 +6,16 @@ export const putHeroes = (payload) => ({
     payload,
 })
 
-export const addHeroAction = (newHero) => ({
+export const addHeroAction = (newHero) => {
+    console.log(newHero)
+    return {
     type: ADD_HERO,
     newHero: {
         ...newHero,
         id: uniqueId('new-hero-')
     },
-})
+}
+}
 
 export const deleteHeroAction = () => ({
     type: DELETE_HERO,
