@@ -2,15 +2,12 @@
 
 Simple page application in React (React Hooks) + Redux and Apollo + GraphQl consisting of:
 
-
-The application should be responsive and work both on desktop and mobile devices
-Use this API: https://github.com/netguru/heroes-api It exposes both REST and GraphQL services.
-
 - List of heroes along with avatar, name, type, and description.
 - Load more heroes button: load the next 5 heroes and disabled when there are no more heroes to load.
 - Open modal by clicking "+" button in the main dashboard. You can add avatar, name, type and description. The Heroes types and avatar in dropdown are fetched from Heros API endpoint. Then You can save the details by clicking the "Add" button and it will be displayed in the list. 
-
 - By clicking on any item on the Heroes list, the modal shows you information about the hero to delete. By clicking "Delete hero" button the heroes list remove that hero.
+
+The application usse this API: https://github.com/netguru/heroes-api It exposes both REST and GraphQL services.
   
 Technologies used: React, React Hooks, Redux, Material UI, Lodash, GraphQl, Apollo, Webpack, Yarn, Concurrently
 
