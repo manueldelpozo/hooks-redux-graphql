@@ -9,7 +9,7 @@ Simple page application in React (React Hooks) + Redux and Apollo + GraphQl cons
 
 The application usse this API: https://github.com/netguru/heroes-api It exposes both REST and GraphQL services.
   
-Technologies used: React, React Hooks, Redux, Material UI, Lodash, GraphQl, Apollo, Webpack, Yarn, Concurrently
+Technologies used: React, React Hooks, Redux, Material UI, Lodash, GraphQl, Apollo, Webpack, Yarn, Concurrently, Docker
 
 
 ## Installation
